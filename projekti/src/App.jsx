@@ -10,9 +10,9 @@ import LinksPage from './LinksPage';
 
 const Linkki1 =  (
   <>
-   <div style={{position: 'absolute', left: 100, top: 100}}> 
+   <div><div style={{position: 'absolute', left: 100, top: 100}}> 
     <a href="https://iltasanomat.fi"><nobr>Iltasanomat</nobr></a>
-   </div> 
+   </div></div>
   </>
 )
 
