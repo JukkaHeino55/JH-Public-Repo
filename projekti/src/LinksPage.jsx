@@ -8,30 +8,44 @@ const LinkkiX =  (
     </>
   )
 
+  function linkElements (link) {
+    const url = link.FieldURL;
+
+    switch (link.FieldType) {
+        case 'LINKKI':
+            return(
+               <a href={url}>{link.FieldText}</a>
+             )
+        case 'LINKKI1':
+            return(
+                "NOT DONE YET"
+            )
+        default:
+            return(
+                "ERROR!!!"
+            )
+
+    
+    }
+  }
+  
   function createLink(link)
  {
 
-    const style = "{{Color: Red;}}"
-    const viistoista = 50;
-    const styles = {
-        color: "red",
-        background: "#0f0",
-        fontSize: "50px"
-    };
-    styles.fontSize = "40px";
-
     const divStyle = {
         position: "absolute",
-        left: "200px",
-        top: "8px"
+        left: "0px",
+        top: "0px"
     }
-    divStyle.left = link.FieldPosX;
+    divStyle.left = link.FieldPosX;  // + px
     divStyle.top = link.FieldPosY;
+    const divKey = link.FieldID;
 
-    console.log("RRRRRRRRRRRRRRR");
+    const linkki = linkElements(link)
+
     return(
-        <div style={divStyle}>
-        <label style={styles}>LAAPELI</label>
+        <div key={divKey} style={divStyle}>
+        {linkki}
         </div>
     )
  }  
@@ -83,25 +97,12 @@ const LinksPage = (props) => {
     },[]);
 
 
-    let linksOut = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     return (
         <>
-        <hr />
-        <p />
-        Teksti 1 {kayttaja}{freimi}
-        <p />zzzz
 
         {links.map((link) => (KUTSU(link) )
         )}
 
-
-        {linksOut}
-  
-
-        <p />
-        {LinkkiX}
-
-        Teksti 2
         </>
     )
 }
