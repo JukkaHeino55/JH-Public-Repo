@@ -8,7 +8,35 @@ const LinkkiX =  (
     </>
   )
 
-  function createLink(linkki) {
+  function createLink(link)
+ {
+
+    const style = "{{Color: Red;}}"
+    const viistoista = 50;
+    const styles = {
+        color: "red",
+        background: "#0f0",
+        fontSize: "50px"
+    };
+    styles.fontSize = "40px";
+
+    const divStyle = {
+        position: "absolute",
+        left: "200px",
+        top: "8px"
+    }
+    divStyle.left = link.FieldPosX;
+    divStyle.top = link.FieldPosY;
+
+    console.log("RRRRRRRRRRRRRRR");
+    return(
+        <div style={divStyle}>
+        <label style={styles}>LAAPELI</label>
+        </div>
+    )
+ }  
+ 
+ function createLinkVarma(linkki) {
     const aa = "50"
     const x = linkki.FieldPosX;
     const y = linkki.FieldPosY.toString();
