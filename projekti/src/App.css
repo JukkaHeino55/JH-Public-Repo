@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+.myClass {
+  position: absolute;
+  left: 600px;
+  top: 100px;
+}
