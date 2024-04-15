@@ -20,7 +20,6 @@ function App() {
       <>
 			  <Navbar /> 
         <LinksPage kayttaja_id="1" kayttaja="JUKKA" freimi_id ="2" freimi="TOKAFREIMI" />
-        <EditModal />
       </>
     )
   } else {

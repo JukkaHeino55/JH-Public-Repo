@@ -3,7 +3,7 @@ import {useState,useEffect} from 'react';
 const useAction = () => {
 	
 	const [editPressed,setEditPressed] = useState({
-		editPressed: true
+		editPressed: false
 	})
 	
     return [editPressed, setEditPressed]
