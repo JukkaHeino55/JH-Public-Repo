@@ -1,37 +1,35 @@
 import {Link} from 'react-router-dom';
 import useAction from '../hooks/useAction';
-//import useAction from '../hooks/useAction';
+import {useState,useEffect} from 'react';
 
 const EditModal = (props) => {
-  let Xdisplay = false;
-	if(props.display) {
-		Xdisplay = props.display;
-	}
+
+	const [state,setState] = useState({
+		firstname:"",
+		lastname:""
+	})
+
 
   console.log("PROPSIT")
   console.log(props)
 
-  const [editPressed, setEditPressed] = useAction();
-
-  console.log("Edit Modal")
-  console.log(Xdisplay)
+ 
+  console.log("======XXXX============")
+  console.log("PROPSIT")
+  console.log(props)
+  console.log("======XXXX============")
 
   const onClickCancel = (event) => {
-    console.log("Clicked")
-    console.log(editPressed.editPressed)
+    event.preventDefault();
+    console.log("Clicked");
+    props.setEditPressed(false);
 
-    setEditPressed((state) => {
-      Xdisplay = false;
-      return {
-        ...state,
-        editPressed: false
-      }
-    })
-  }
+   }
+
 
   console.log("REDRAW")
 
-  if (Xdisplay) {
+  if (props.display) {
   return(
     <>
 
@@ -52,8 +50,10 @@ const EditModal = (props) => {
     </>
   )
   } else {
-    return (<>
-    </>)
+
+    //props.setEditPressed(false);
+
+    return (<></>)
   }
 }
 

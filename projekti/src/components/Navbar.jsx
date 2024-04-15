@@ -4,13 +4,22 @@ import React, { useState, useEffect } from 'react';
 import useAction from '../hooks/useAction';
 import useUser from '../hooks/useUser';
 import useFrame from '../hooks/useFrame';
-import EditModal from '../components/EditModal';
+import EditModal from './EditModal';
 import { render } from 'react-dom';
 //import useAppState from '../hooks/useAppState';
 
 const Navbar = () => {
+
+    const [state,setState] = useState({
+		editPressed: false
+	})
+
+	const setEditPressed = (arvo) => {
+		setState({
+			editPressed:arvo
+		})
+	}
 	
-    const [editPressed, setEditPressed] = useAction();
     const [user,setUser] = useUser();
     const [frame,setFrame] = useFrame();
     // const [userAndFrame] = useAction();
@@ -38,21 +47,13 @@ const Navbar = () => {
 
     const onClickEdit = (event) => {
         console.log("Clicked")
-        console.log(editPressed.editPressed)
 
-		setEditPressed((state) => {
-            if(editPressed.editPressed) {
-                return {
-                    ...state,
-                    editPressed: false
-                }
+            if(state.editPressed) {
+                setEditPressed(false)
             } else {
-			    return {
-                   ...state,
-                   editPressed: true
-			    }
+                setEditPressed(true)
             }
-		})
+
 	}
 
     return(
@@ -63,7 +64,7 @@ const Navbar = () => {
             Frame: <input type="text" name="frame" value={frame.frame} onChange={onChangeFrame}/>
             <button type="button" class="btn btn-success" onClick={onClickEdit}>Edit</button>
         </p>
-        <EditModal display={editPressed.editPressed}/>
+        <EditModal setEditPressed={setEditPressed} display={state.editPressed}/>
     </nav>
     )
 }
