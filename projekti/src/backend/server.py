@@ -23,6 +23,15 @@ def getLinks():
     print(results)
     return results
 
+@app.route("/insertLink")
+def insertLink():
+    print("Lisätään linkki")
+    dao = DB_Links_DAO()
+    result = dao.insert_element
+    print("insert suroitettu")
+    print(result)
+    return result
+
 @app.route("/testJSON")
 def testJSON():
     print("Test JSON alkaa")

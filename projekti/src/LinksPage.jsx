@@ -50,21 +50,6 @@ const LinkkiX =  (
     )
  }  
  
- function createLinkVarma(linkki) {
-    const aa = "50"
-    const x = linkki.FieldPosX;
-    const y = linkki.FieldPosY.toString();
-    console.log("X = " + x)
-    const element = 
-        <>
-      <div style={{position: 'absolute', left: {x}, top: {y}}}>
-         <a href="jjjjjj"><nobr>{linkki.FieldText}</nobr></a>
-      </div> 
-      </>;
-    console.log(element);
-    return element
-  }
-
 
 function KUTSU(link) {
     return ( <>

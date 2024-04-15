@@ -1,16 +1,18 @@
 import {Link} from 'react-router-dom';
+import useAction from '../hooks/useAction';
 //import useAction from '../hooks/useAction';
-//import useAppState from '../hooks/useAppState';
 
 const EditModal = () => {
 	
+  const [editPressed, setEditPressed] = useAction();
 
-    return(
+  if (editPressed.editPressed) {
+  return(
     <>
 
             <container class ="myClass bg-warning">
               <div class="form-group">
-
+<input type="hidden" value="{editPressed.editPressed}" />
 
                X:  <input type="text" size="4" />
                Y:  <input type="text" size="4" />
@@ -26,7 +28,12 @@ const EditModal = () => {
             </container>
      
     </>
-    )
+  )
+  } else {
+    return (<>
+    <input type="hidden" value="{editPressed.editPressed}" />
+    </>)
+  }
 }
 
 export default EditModal

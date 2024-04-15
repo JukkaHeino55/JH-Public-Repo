@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import useAction from './hooks/useAction';
-//import useAppState from './hooks/useAppState';
 import './App.css'
 import Navbar from './components/Navbar';
 import EditModal from './components/EditModal';
@@ -9,7 +8,7 @@ import LinksPage from './LinksPage';
 
 function App() {
 
-  const [editPressed] = useAction();
+  const [editPressed, setEditPressed] = useAction();
   // const editPressed = true;
 
   console.log("============")
