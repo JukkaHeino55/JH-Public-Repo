@@ -8,42 +8,45 @@ import EditModal from './EditModal';
 import { render } from 'react-dom';
 //import useAppState from '../hooks/useAppState';
 
-const Navbar = () => {
-
+const Navbar = (props) => {
     const [state,setState] = useState({
 		editPressed: false
 	})
-
+    
 	const setEditPressed = (arvo) => {
 		setState({
 			editPressed:arvo
 		})
 	}
 	
+    console.log("GGG")
+
+    const onChangeNew_User = (event) => {
+        console.log("new_User changed")
+        props.setState((state) => {
+            return {
+                ...state,
+                new_User: event.target.value
+            }
+        })
+    }
+
+    const onChangeNew_Frame = (event) => {
+        console.log("new_Framechanged")
+        props.setState((state) => {
+            return {
+                ...state,
+                new_Frame: event.target.value
+            }
+        })
+    }
+
     const [user,setUser] = useUser();
     const [frame,setFrame] = useFrame();
     // const [userAndFrame] = useAction();
 
     console.log("######")
     console.log(user.user)
-
-    const onChangeUser = (event) => {
-		setUser((state) => {
-			return {
-				...state,
-				[event.target.name]:event.target.value
-			}
-		})
-	}
-
-    const onChangeFrame = (event) => {
-		setFrame((state) => {
-			return {
-                ...state,
-				[event.target.name]:event.target.value
-			}
-		})
-	}
 
     const onClickEdit = (event) => {
         console.log("Clicked")
@@ -60,11 +63,11 @@ const Navbar = () => {
 
     <nav className="navbar fixed-top navbar-default navbar-dark bg-primary">
         <p>
-            User: <input type="text" name="user" value={user.user} onChange={onChangeUser}/>
-            Frame: <input type="text" name="frame" value={frame.frame} onChange={onChangeFrame}/>
+            User: <input type="text" name="user" value={props.state.new_User} onChange={onChangeNew_User}/>
+            Frame: <input type="text" name="frame" value={props.state.new_Frame} onChange={onChangeNew_Frame}/>
             <button type="button" class="btn btn-success" onClick={onClickEdit}>Edit</button>
         </p>
-        <EditModal setEditPressed={setEditPressed} display={state.editPressed}/>
+        <EditModal props={props} setEditPressed={setEditPressed} display={state.editPressed}/>
     </nav>
     )
 }

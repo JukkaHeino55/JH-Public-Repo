@@ -4,10 +4,43 @@ import {useState,useEffect} from 'react';
 
 const EditModal = (props) => {
 
-	const [state,setState] = useState({
-		firstname:"",
-		lastname:""
-	})
+  const onChangeNew_X = (event) => {
+    console.log("Jotakin")
+    console.log(props.props.state)
+    props.props.setState((state) =>  {
+      return {
+        ...props.props.state,
+        new_X: event.target.value
+      }
+    })
+  } 
+
+  const onChangeNew_Y = (event) => {
+    props.props.setState((state) =>  {
+      return {
+        ...props.props.state,
+        new_Y: event.target.value
+      }
+    })
+  } 
+
+  const onChangeNew_Text = (event) => {
+    props.props.setState((state) =>  {
+      return {
+        ...props.props.state,
+        new_Text: event.target.value
+      }
+    })
+  } 
+  const onChangeNew_URL = (event) => {
+    props.props.setState((state) =>  {
+      return {
+        ...props.props.state,
+        new_URL: event.target.value
+      }
+    })
+  } 
+
 
 
   console.log("PROPSIT")
@@ -35,15 +68,27 @@ const EditModal = (props) => {
 
             <container class ="myClass bg-warning">
               <div class="form-group">
-               X:  <input type="text" size="4" />
-               Y:  <input type="text" size="4" />
+               X:  <input type="text" 
+                   size="4" 
+                   value={props.props.state.new_X}
+                   onChange={onChangeNew_X}/>
+               Y:  <input type="text" 
+                   size="4" 
+                   value={props.props.state.new_Y}
+                   onChange={onChangeNew_Y}/>
                <p />
-               Text:  <input type="text" size="50" />
+               Text: <input type="text" 
+                   size="50" 
+                   value={props.props.state.new_Text}
+                   onChange={onChangeNew_Text}/>
                <p />
-               URL: <input type="text" size="50" />
+               URL: <input type="text" 
+                  size="50" 
+                  value={props.props.state.new_URL}
+                   onChange={onChangeNew_URL}/>
                <p />
-               <button type="submit" class="btn btn-primary">Add</button>
-               <button type="submit" class="btn btn-primary" onClick={onClickCancel}>Cancel</button>
+                  <button type="submit" class="btn btn-primary">Add</button>
+                  <button type="submit" class="btn btn-primary" onClick={onClickCancel}>Cancel</button>
               </div>
             </container>
      
@@ -56,5 +101,6 @@ const EditModal = (props) => {
     return (<></>)
   }
 }
+
 
 export default EditModal

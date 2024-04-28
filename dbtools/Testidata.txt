@@ -1,0 +1,5 @@
+use DB_Links
+insert into T_User values ('JUKKA',3 )
+insert into T_Frame values('ENSIFREIMI',1)
+insert into T_Field values(1, 1, 'LINKKI', 100, 50, 'Iltasanomat','https://www.is.fi/')
+insert into T_Field values(1, 2, 'LINKKI', 100, 75, 'Iltalehti','https://www.iltalehti.fi/')

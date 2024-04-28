@@ -1,0 +1,29 @@
+
+
+Set-Service 'MSSQL$DOWSQL2019' -StartupType Manual
+Start-Service -Name 'MSSQL$DOWSQL2019' 
+
+
+# Get a reference to the ManagedComputer class.
+CD SQLSERVER:\SQL\computername
+$Wmi = (get-item .).ManagedComputer
+
+
+LAPTOP-RAKNEPNH\SQLEXPRESS01
+
+CD SQLSERVER:\SQL\LAPTOP-RAKNEPNH
+
+
+# Sometimes my SQLEXPRESS service doesnt start with the rest of my services even though it is set to automatic
+# In order to get it started, I would have to explicity switch over to my domain admin account and kick the service
+# This allows me to shortcut all of that
+
+$PSPath = "C:\Windows\System32\WindowsPowerShell\v1.0"
+
+$admin = Get-Credential;
+
+$startSqlService = @'
+$(Get-Service 'MSSQL$SQLEXPRESS').Start();
+'@
+
+Start-Process -WorkingDirectory $PSPath -FilePath "powershell.exe" -Credential $admin -LoadUserProfile -ArgumentList '-Command',$startSqlService;

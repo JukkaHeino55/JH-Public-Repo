@@ -1,0 +1,162 @@
+pip install pymysql
+
+import pymysql
+
+conn = pymysql.connect(
+    host='localhost',
+    user='root',
+    password='password',
+    db='mydatabase',
+    charset='utf8mb4',
+    cursorclass=pymysql.cursors.DictCursor
+)
+
+try:
+    with conn.cursor() as cursor:
+        # Create a new record
+        sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
+        cursor.execute(sql, ('john@example.com', 'mypassword'))
+
+    # Commit changes
+    conn.commit()
+
+    print("Record inserted successfully")
+finally:
+    conn.close()
+
+
+try:
+    with conn.cursor() as cursor:
+        # Update a record
+        sql = "UPDATE `users` SET `password`=%s WHERE `email`=%s"
+        cursor.execute(sql, ('newpassword', 'john@example.com'))
+
+    # Commit changes
+    conn.commit()
+
+    print("Record updated successfully")
+finally:
+    conn.close()
+
+try:
+    with conn.cursor() as cursor:
+        # Delete a record
+        sql = "DELETE FROM `users` WHERE `email`=%s"
+        cursor.execute(sql, ('john@example.com',))
+
+    # Commit changes
+    conn.commit()
+
+    print("Record deleted successfully")
+finally:
+    conn.close()
+
+try:
+    with conn.cursor() as cursor:
+        # Read data from database
+        sql = "SELECT * FROM `users`"
+        cursor.execute(sql)
+
+        # Fetch all rows
+        rows = cursor.fetchall()
+
+        # Print results
+        for row in rows:
+            print(row)
+finally:
+    conn.close()
+
+
+
+import sqlite3
+
+create_table_sql = """CREATE TABLE IF NOT EXISTS contacts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    firstname VARCHAR(20),
+    lastname VARCHAR(50),
+    email VARCHAR(50),
+    phone VARCHAR(20)
+)"""
+add_new_contact_sql = "INSERT INT
+get_contacts_sql = "SELECT * FROM contacts"
+
+O contacts(firstname,lastname,email,phone) VALUES(?,?,?,?)"
+
+remove_row_sql = "DELETE FROM contacts WHERE id=?"
+
+edit_row_sql = "UPDATE contacts SET firstname=?,lastname=?,email=?,phone=? WHERE id=?"
+
+def get_connection():
+    conn = None
+    try:
+        conn = sqlite3.connect("database.db")
+        return conn
+    except:
+        print("Failed to connect to database")
+    return conn
+   
+def create_contact_table():
+    conn = get_connection()
+    if conn == None:
+        return None
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+        print("Successfully created table")
+        return "Success"
+    except:
+        print("Failed to create table")
+    return None
+
+def get_contacts():
+    conn = get_connection()
+    if conn == None:
+        return None
+    try:
+        c = conn.cursor()
+        contacts = c.execute(get_contacts_sql)
+        return contacts.fetchall()
+    except:
+        print("Failed to get contacts")
+    return None
+
+def add_new_contact(data):
+    conn = get_connection()
+    if conn == None:
+        return None
+    try:
+        c = conn.cursor()
+        data_tuple = (data["firstname"],data["lastname"],data["email"],data["phone"])
+        c.execute(add_new_contact_sql,data_tuple)
+        conn.commit()
+        return "Success"
+    except:
+        print("Failed to add new contact")
+    return None
+    
+def remove_contact(id):
+    conn = get_connection()
+    if conn == None:
+        return None
+    try:
+        c = conn.cursor()
+        c.execute(remove_row_sql,(id,))
+        conn.commit()
+        return "Success"
+    except:
+        print("Failed to remove contact")
+    return None
+    
+def edit_contact(data,id):
+    conn = get_connection()
+    if conn == None:
+        return None
+    try:
+        c = conn.cursor()
+        data_tuple = (data["firstname"],data["lastname"],data["email"],data["phone"],id)
+        c.execute(edit_row_sql,data_tuple)
+        conn.commit()
+        return "Success"
+    except:
+        print("Failed to edit contact")
+    return None
