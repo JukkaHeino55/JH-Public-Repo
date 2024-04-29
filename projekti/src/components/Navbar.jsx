@@ -2,11 +2,9 @@ import {Link} from 'react-router-dom';
 import ReactDOM from "react-dom";
 import React, { useState, useEffect } from 'react';
 import useAction from '../hooks/useAction';
-import useUser from '../hooks/useUser';
-import useFrame from '../hooks/useFrame';
 import EditModal from './EditModal';
+import NewLink from './NewLink';
 import { render } from 'react-dom';
-//import useAppState from '../hooks/useAppState';
 
 const Navbar = (props) => {
     const [state,setState] = useState({
@@ -18,7 +16,16 @@ const Navbar = (props) => {
 			editPressed:arvo
 		})
 	}
-	
+    useEffect(() => {
+        console.log("YEEYEEYEEYEE");
+        props.setState((state) => {
+            return {
+                ...state,
+                new_Display_NewLink: state.editPressed
+            }
+        })
+      }, [state.editPressed]);
+
     console.log("GGG")
 
     const onChangeNew_User = (event) => {
@@ -41,12 +48,7 @@ const Navbar = (props) => {
         })
     }
 
-    const [user,setUser] = useUser();
-    const [frame,setFrame] = useFrame();
-    // const [userAndFrame] = useAction();
-
     console.log("######")
-    console.log(user.user)
 
     const onClickEdit = (event) => {
         console.log("Clicked")
@@ -68,6 +70,7 @@ const Navbar = (props) => {
             <button type="button" class="btn btn-success" onClick={onClickEdit}>Edit</button>
         </p>
         <EditModal props={props} setEditPressed={setEditPressed} display={state.editPressed}/>
+        <NewLink props={props} setEditPressed={setEditPressed} display={state.editPressed}/>
     </nav>
     )
 }

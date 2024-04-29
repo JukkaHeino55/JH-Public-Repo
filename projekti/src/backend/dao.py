@@ -28,7 +28,7 @@ class DB_Links_DAO:
         print("DB_Linkd_DAO : Add_Element" + FieldText)
         #           query = "SELECT * FROM T_Field"
         #           a = self.cursor.execute(query)
-    def get_elements(self, FielFrameID):
+    def get_elements(self, FieldFrameID):
         query = """SELECT * FROM T_Field"""
         a = self.cursor.execute(query)
         records = a.fetchall()
@@ -42,3 +42,8 @@ class DB_Links_DAO:
         json_data =  json.dumps(results)
         results = truncateFieldType(results)
         return results
+    def insert_element(self, data):
+        print("======>")
+        print(data)
+        print("======>")
+        

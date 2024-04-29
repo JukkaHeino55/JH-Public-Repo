@@ -1,12 +1,4 @@
 import {useState, useEffect} from 'react';
-// import './linkDefiner';
-const LinkkiX =  (
-    <>
-     <div style={{position: 'absolute', left: 250, top: 100}}> 
-      <a href="https://iltasanomat.fi"><nobr>X-linkki</nobr></a>
-     </div>
-    </>
-  )
 
   function linkElements (link) {
     const url = link.FieldURL;
@@ -55,8 +47,6 @@ function KUTSU(link) {
     return ( <>
         {createLink(link)}
         </>  ) 
-    // return LinkDefiner.linkDefiner(link)
-    // return "XXX" + link.FieldText + "XXX"
 }
 
 const LinksPage = (props) => {
@@ -79,15 +69,12 @@ const LinksPage = (props) => {
             console.log(data);
             setLinks(data);
         });
-    },[]);
+    },[]);  // props.state.new_Upd_Count
 
 
     return (
         <>
-
-        {links.map((link) => (KUTSU(link) )
-        )}
-
+        {links.map((link) => (KUTSU(link)))}
         </>
     )
 }

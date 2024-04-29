@@ -58,6 +58,25 @@ const ShowState = (props) => {
         })
     }
 
+    const changeState_Display_NewLink = (event) => {
+        props.setState((state) => {
+            return {
+                ...state,
+                 new_Display_NewLink: event.target.value
+            }
+        })
+    }
+
+    const changeState_Upd_Count = (event) => {
+        props.setState((state) => {
+            return {
+                ...state,
+                 new_Upd_Count: event.target.value
+            }
+        })
+    }
+
+
     const changeState_Y = (event) => {
 
         console.log('Clicked Y')
@@ -99,8 +118,14 @@ const ShowState = (props) => {
         <label>Text = {props.state.new_Text}</label>
         <input type="text" onChange={changeState_Text} value={props.state.new_Text}></input>
         <p />
-        <label>y = {props.state.new_URL}</label>
+        <label>URL = {props.state.new_URL}</label>
         <input type="text" onChange={changeState_URL} value={props.state.new_URL}></input>
+        <p />
+        <label>Display_NewLink = {props.state.new_Display_NewLink}</label>
+        <input type="text" onChange={changeState_Display_NewLink} value={props.state.new_Display_NewLink}></input>
+        <p />
+        <label>Upd_Count = {props.state.new_Upd_Count}</label>
+        <input type="text" onChange={changeState_Upd_Count} value={props.state.new_Upd_Count}></input>
         </div>
         
         

@@ -1,6 +1,6 @@
 import pyodbc 
 import json
-from flask import Flask,jsonify
+from flask import Flask,request,jsonify
 from flask_cors import CORS, cross_origin
 from dao import DB_Links_DAO
 
@@ -23,12 +23,15 @@ def getLinks():
     print(results)
     return results
 
-@app.route("/insertLink")
+@app.route("/insertLink", methods=['GET', 'POST'])
 def insertLink():
     print("Lisätään linkki")
+    print(request.method)
+    print(request.data)
     dao = DB_Links_DAO()
-    result = dao.insert_element
-    print("insert suroitettu")
+    result = dao.insert_element(request.data)
+    print("insert suoritettu")
+    result = ''
     print(result)
     return result
 
